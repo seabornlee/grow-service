@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/grow_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: pass
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true

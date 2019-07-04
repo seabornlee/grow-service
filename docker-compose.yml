@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  mysql-development:
+    image: mysql:5.7.19
+    container_name: mysql-development
+    ports:
+      - 3306:3306
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./src/main/resources/init.sql:/data/application/init.sql
+    environment:
+      - LANG=C.UTF-8
+      - TERM=dumb
+      - MYSQL_ROOT_PASSWORD=pass

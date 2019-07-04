@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS grow_dev;
+USE grow_dev;
