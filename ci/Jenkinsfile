@@ -6,24 +6,10 @@ node{
     }
 
     stage('Test') {
-        sh './mvnw test'
+        sh './gradlew test'
     }
 
     stage('Build') {
-        sh './mvnw install'
-    }
-
-    withEnv(['IMAGE_REGISTRY=955065381857.dkr.ecr.cn-north-1.amazonaws.com.cn',
-             'IMAGE_REPO=shipping-service']) {
-
-        stage('GenImage') {
-            sh './ci/genImage.sh'
-        }
-
-        stage('Deploy') {
-            withCredentials([file(credentialsId: 'kube-config', variable: 'KUBE_CONFIG_FILE')]) {
-                sh './ci/deploy.sh'
-            }
-        }
+        sh './gradlew build'
     }
 }
