@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'com.oocl'
+version = '0.0.1-SNAPSHOT'
+
+description = """grow"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'2.1.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.1.6.RELEASE'
+    compile group: 'org.flywaydb', name: 'flyway-core', version:'5.2.4'
+    compile group: 'org.projectlombok', name: 'lombok', version:'1.18.8'
+    runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'2.1.6.RELEASE'
+    runtime(group: 'mysql', name: 'mysql-connector-java', version:'8.0.16') {
+exclude(module: 'protobuf-java')
+    }
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.1.6.RELEASE'
+    testCompile group: 'com.h2database', name: 'h2', version:'1.4.194'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.3.2'
+}

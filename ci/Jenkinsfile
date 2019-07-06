@@ -1,0 +1,29 @@
+node{
+    step([$class: 'WsCleanup'])
+
+    stage('Checkout') {
+        git url: 'https://github.com/seabornlee/grow.git', branch: 'master'
+    }
+
+    stage('Test') {
+        sh './mvnw test'
+    }
+
+    stage('Build') {
+        sh './mvnw install'
+    }
+
+    withEnv(['IMAGE_REGISTRY=955065381857.dkr.ecr.cn-north-1.amazonaws.com.cn',
+             'IMAGE_REPO=shipping-service']) {
+
+        stage('GenImage') {
+            sh './ci/genImage.sh'
+        }
+
+        stage('Deploy') {
+            withCredentials([file(credentialsId: 'kube-config', variable: 'KUBE_CONFIG_FILE')]) {
+                sh './ci/deploy.sh'
+            }
+        }
+    }
+}
