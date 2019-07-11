@@ -2,7 +2,7 @@ node{
     step([$class: 'WsCleanup'])
 
     stage('Checkout') {
-        git url: 'git@github.com:seabornlee/grow.git', branch: 'master'
+        git url: 'https://github.com/seabornlee/grow.git', branch: 'master'
     }
 
     stage('Test') {
