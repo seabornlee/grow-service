@@ -2,7 +2,7 @@
 
 IMAGE_REPO=grow-service
 
-docker login --username=hkliya@gmail.com registry-internal.cn-shanghai.aliyuncs.com
+docker login --username=hkliya@gmail.com --password=r2t8.HEDQGWifd registry-internal.cn-shanghai.aliyuncs.com
 
 ./gradlew docker
 docker tag com.oocl/$IMAGE_REPO:latest $IMAGE_REGISTRY/$IMAGE_REPO:$BUILD_NUMBER
