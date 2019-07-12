@@ -1,5 +1,24 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/groups/public/'
+        }
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+
+        mavenCentral()
+    }
+    
+    dependencies {
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'com.palantir.docker'
 
 group = 'com.oocl'
 version = '0.0.1-SNAPSHOT'
@@ -12,12 +31,25 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+jar {
+    baseName = 'grow-service'
+    version = "${version}"
+}
 
+docker {
+    name "${project.group}/${jar.baseName}"
+    files jar.archivePath
+    buildArgs(['JAR_FILE': "${jar.archiveName}"])
+}
 
 repositories {
-
-     maven { url "http://repo.maven.apache.org/maven2" }
+    maven {
+        url 'https://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    
+    mavenCentral()
 }
+
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'2.1.6.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.1.6.RELEASE'
