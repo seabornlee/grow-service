@@ -17,7 +17,7 @@ node{
                  'IMAGE_REPO=grow-service']) {
 
         stage('GenImage') {
-            sh './ci/genImage.sh'
+            sh 'bash ./ci/genImage.sh'
         }
     }
 }
