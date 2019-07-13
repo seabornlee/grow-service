@@ -15,7 +15,7 @@ node{
         sh './gradlew build'
     }
 
-    withEnv(['IMAGE_REGISTRY=registry.cn-shanghai.aliyuncs.com/agile-training/agile-training',
+    withEnv(['IMAGE_REGISTRY=registry.cn-shanghai.aliyuncs.com/agile-training',
                  'IMAGE_REPO=grow-service']) {
 
         stage('GenImage') {
