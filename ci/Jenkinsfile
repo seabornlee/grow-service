@@ -1,4 +1,6 @@
 node{
+    properties([pipelineTriggers([githubPush()])])
+
     step([$class: 'WsCleanup'])
 
     stage('Checkout') {
