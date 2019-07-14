@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grow-service
+  labels:
+    app: grow-service
+spec:
+  ports:
+    - port: 9001
+      name: http
+  selector:
+    app: grow-service
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grow-service-v2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grow-service
+        version: v2
+    spec:
+      containers:
+        - name: grow-service
+          image: IMAGE_URI
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9001
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_user
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_pass
+      imagePullSecrets:
+        - name: new-secret

@@ -30,5 +30,11 @@ node{
         stage('GenImage') {
             sh 'bash ./ci/genImage.sh'
         }
+
+        stage('Deploy') {
+            withCredentials([file(credentialsId: 'kube-config', variable: 'KUBE_CONFIG_FILE')]) {
+                sh 'bash ./ci/deploy.sh'
+            }
+        }
     }
 }
