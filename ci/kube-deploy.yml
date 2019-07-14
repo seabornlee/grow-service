@@ -42,5 +42,3 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: db_pass
-      imagePullSecrets:
-        - name: new-secret
