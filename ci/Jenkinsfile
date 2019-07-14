@@ -4,7 +4,16 @@ node{
     step([$class: 'WsCleanup'])
 
     stage('Checkout') {
-        git url: 'https://github.com/seabornlee/grow.git', branch: 'master'
+        checkout(
+            $class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [
+                [$class: 'CloneOption', depth: 1, noTags: true, reference: '', shallow: true]
+            ],
+            submoduleCfg: [],
+            userRemoteConfigs: [[url: 'https://github.com/seabornlee/grow.git']]
+        )
     }
 
     stage('Test') {
