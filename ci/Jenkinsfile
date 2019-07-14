@@ -6,7 +6,7 @@ node{
     stage('Checkout') {
         checkout(
             $class: 'GitSCM',
-            branches: [[name: '*/master']],
+            branches: [[name: '*/aliyun']],
             doGenerateSubmoduleConfigurations: false,
             extensions: [
                 [$class: 'CloneOption', depth: 1, noTags: true, reference: '', shallow: true]
