@@ -12,7 +12,7 @@ node{
                 [$class: 'CloneOption', depth: 1, noTags: true, reference: '', shallow: true]
             ],
             submoduleCfg: [],
-            userRemoteConfigs: [[url: 'https://github.com/seabornlee/grow.git']]
+            userRemoteConfigs: [[url: 'https://code.aliyun.com/oocl-training/grow-service.git']]
         )
     }
 
