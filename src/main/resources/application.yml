@@ -8,3 +8,15 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     show-sql: true
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://rm-wz9c0fq3r24952enl.mysql.rds.aliyuncs.com/grow?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  flyway:
+    enabled: true
