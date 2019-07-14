@@ -17,7 +17,7 @@ node{
     }
 
     stage('Build') {
-        sh './gradlew build'
+        sh './gradlew build -x test'
     }
 
     withEnv(['IMAGE_REGISTRY=registry-vpc.cn-shenzhen.aliyuncs.com/agile-training',
